@@ -6,3 +6,4 @@
 - routing restriction user check through cookie, profile api, logout
 - login validation
 - profile, connections, requests page
+- ignore send from feed

@@ -10,7 +10,6 @@ const AppLayout = () => {
   const user=useSelector(store=>store.user)
   const navigate=useNavigate()
   const fetchUser=async()=>{
-    if(user) return
     try{
       const response=await axios.get(BASE_URL+'/profile/view',{withCredentials:true})
       dispatch(addUserData(response.data))
@@ -24,7 +23,9 @@ const AppLayout = () => {
     }
   }
   useEffect(()=>{
-    fetchUser()
+    if(!user){
+      fetchUser()
+    }
   },[])
   return (
     <div >

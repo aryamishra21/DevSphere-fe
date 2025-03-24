@@ -4,7 +4,6 @@ import axios from 'axios'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFeed } from '../utils/store/feedSlice'
-import store from '../utils/store/store'
 
 const Feed = () => {
   const dispatch=useDispatch()
@@ -23,9 +22,10 @@ const Feed = () => {
   useEffect(()=>{
     getFeed()
   },[])
+  if(feed?.length<=0 || !feed) return (<p className="mx-auto text-center text-3xl font-semibold my-20">No users found!</p>)
   return (
     <div>
-      <div className='mx-auto flex items-center flex-col gap-10 py-10 bg-black'>
+      <div className='mx-auto flex items-center flex-col gap-10 py-10'>
       {
         feed && feed.map((user)=>{
           return <UserCard data={user}/>
